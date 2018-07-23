@@ -17,6 +17,9 @@ stages:
       branch:
         include:
         - test-pipeline
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: exit 2
   when:
     branch: {}
 - name: seq2
