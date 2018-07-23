@@ -3,7 +3,9 @@ stages:
   steps:
   - runScriptConfig:
       image: golang:latest
-      shellScript: echo 'branch-master'
+      shellScript: |-
+        echo 'branch-master'
+        echo ${CICD_EXECUTION_SEQUENCE}
     when:
       branch:
         include:
@@ -17,4 +19,14 @@ stages:
         - test-pipeline
   when:
     branch: {}
+- name: seq2
+  steps:
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: echo ${CICD_EXECUTION_SEQUENCE}
+- name: seq3
+  steps:
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: echo ${CICD_EXECUTION_SEQUENCE}
 timeout: 60
