@@ -1,0 +1,20 @@
+stages:
+- name: branchmaster
+  steps:
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: echo 'branch-master'
+    when:
+      branch:
+        include:
+        - master
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: echo 'branch-pipe'
+    when:
+      branch:
+        include:
+        - test-pipeline
+  when:
+    branch: {}
+timeout: 60
